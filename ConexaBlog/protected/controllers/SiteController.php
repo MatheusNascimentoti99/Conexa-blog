@@ -52,6 +52,7 @@ class SiteController extends Controller
 	public function actionContact()
 	{
 		$model=new ContactForm;
+		
 		if(isset($_POST['ContactForm']))
 		{
 			$model->attributes=$_POST['ContactForm'];
@@ -63,7 +64,7 @@ class SiteController extends Controller
 					"Reply-To: {$model->email}\r\n".
 					"MIME-Version: 1.0\r\n".
 					"Content-Type: text/plain; charset=UTF-8";
-
+				
 				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
 				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
 				$this->refresh();
@@ -91,8 +92,9 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
+			Yii::log("auth: ".json_encode($model), CLogger::LEVEL_INFO, 'application');
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->render('pages/about');
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
