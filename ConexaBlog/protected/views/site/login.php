@@ -5,13 +5,9 @@
 
 ?>
 
-<div id="header">
-	<div id="logo" class="text-primary"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	
-</div>
 <div class="position-absolute text-center top-50 start-50 translate-middle">
-	<h2 class="text-primary">Login</h2>
-	<div class="card row items-center justify-center" style="width: 30rem;">
+	<h1 class="text-orange">Login</h1>
+	<div class="row items-center justify-center mt-5" style="width: 30rem;">
 		<div class="card-body">
 			
 			<p>Por favor, preencha os campos com seu usuário e senha:</p>

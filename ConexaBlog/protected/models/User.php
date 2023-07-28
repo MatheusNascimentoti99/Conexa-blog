@@ -9,15 +9,9 @@
  * @property string $password
  * @property string $email
  */
-class User extends CActiveRecord
+class User
 {
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'tbl_user';
-	}
+
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -57,46 +51,22 @@ class User extends CActiveRecord
 			'password' => 'Password',
 			'email' => 'Email',
 			'name' => 'Name',
+			'photo' => 'Photo',
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
+	/*
+	 * @return user
 	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+	public function getUser(Int $id){
 
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('email',$this->email,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $_ENV['BASE_URL_MY_DB'].'users/'.$id);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($curl);
+		
+		$response = json_decode($response, true);
+		return $response;
 	}
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return User the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
 }

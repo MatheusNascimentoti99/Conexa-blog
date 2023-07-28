@@ -8,7 +8,7 @@
 
 class UserIdentity extends CUserIdentity
 {	
-	
+	private $_id;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -29,14 +29,21 @@ class UserIdentity extends CUserIdentity
 		curl_setopt($curl, CURLOPT_URL, $_ENV['BASE_URL_MY_DB'].'users?'.http_build_query($params));
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($curl);
-		Yii::log("Debug: ".$response, CLogger::LEVEL_INFO, 'application');
+		
 		$response = json_decode($response, true);
 		curl_close($curl);
 		if(count($response) > 0){
+			$this->_id = $response[0]['id'];
+			$this->setState('title', $response[0]['name']);	
+			$this->setState('photo', $response[0]['photo'] ?? '');	
 			$this->errorCode=self::ERROR_NONE;
 		}else{
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		}
 		return !$this->errorCode;
+	}
+
+	public function getId(){
+		return $this->_id;
 	}
 }
