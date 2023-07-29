@@ -9,14 +9,13 @@
  * @property string $password
  * @property string $email
  */
-class User extends _BaseModel
+class Category extends _BaseModel
 {
 
 	public function __construct()
 	{
-		parent::__construct('users');
+		parent::__construct('categories');
 	}
-
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -25,13 +24,13 @@ class User extends _BaseModel
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('username, password, email', 'required'),
-			array('username, password, email', 'length', 'max' => 128),
+		return [
+			['id, name', 'required'],
+			['name', 'length', 'max' => 128],
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, email', 'safe', 'on' => 'search'),
-		);
+			['id, name', 'safe', 'on' => 'search'],	
+		];
 	}
 
 	/**
@@ -42,7 +41,7 @@ class User extends _BaseModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'posts' => array(self::HAS_MANY, 'Post', 'author_id'),
+
 		);
 	}
 
@@ -53,22 +52,8 @@ class User extends _BaseModel
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
-			'name' => 'Name',
-			'photo' => 'Photo',
+			'name' => 'Categoria',
 		);
-	}
-
-	/*
-	 * @return user
-	 */
-	public function getUser(int $id)
-	{
-
-		$response = $this->api->get($id);
-		return $response;
 	}
 
 }

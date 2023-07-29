@@ -9,13 +9,8 @@
  * @property string $password
  * @property string $email
  */
-class User extends _BaseModel
+class Post extends CActiveRecord
 {
-
-	public function __construct()
-	{
-		parent::__construct('users');
-	}
 
 
 	/**
@@ -42,7 +37,7 @@ class User extends _BaseModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'posts' => array(self::HAS_MANY, 'Post', 'author_id'),
+			'author' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -53,22 +48,12 @@ class User extends _BaseModel
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
-			'name' => 'Name',
-			'photo' => 'Photo',
+			'title' => 'Título',
+			'content' => 'Conteúdo',
+			'category_id' => 'Categoria',
+			'user_id' => 'Autor',
+			'image_url' => 'Imagem',
 		);
-	}
-
-	/*
-	 * @return user
-	 */
-	public function getUser(int $id)
-	{
-
-		$response = $this->api->get($id);
-		return $response;
 	}
 
 }
