@@ -8,7 +8,9 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- favicon -->
+	<link rel="shortcut icon" href="https://conexa.app/wp-content/uploads/2021/08/favicon.png" type="image/x-icon">
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
