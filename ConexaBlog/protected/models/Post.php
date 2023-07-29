@@ -5,11 +5,13 @@
  *
  * The followings are the available columns in table 'tbl_user':
  * @property integer $id
- * @property string $username
- * @property string $password
- * @property string $email
+ * @property string $user_id
+ * @property string $category_id
+ * @property string $content
+ * @property string $title
+ * @property string $image_url
  */
-class Post extends CActiveRecord
+class Post extends _BaseModel
 {
 
 
@@ -21,11 +23,11 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('username, password, email', 'length', 'max' => 128),
+			array('user_id, category_id, content, title', 'required'),
+			array('user_id, category_id, content', 'length', 'max' => 128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, email', 'safe', 'on' => 'search'),
+			array('id, user_id, category_id, content, title', 'safe', 'on' => 'search'),
 		);
 	}
 

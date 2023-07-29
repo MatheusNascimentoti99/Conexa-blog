@@ -16,16 +16,12 @@
 
 <body>
 
-<div class="container" id="page" style="height:100vh">
+<div id="page" style="height:100vh">
 	<?php require_once 'header.php'; ?>
 	
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-	
-	<?php echo $content; ?>
+	<div style="padding-top: 100px;">
+		<?php echo $content; ?>
+	</div>
 	
 	<?php require_once 'footer.php'; ?>
 	

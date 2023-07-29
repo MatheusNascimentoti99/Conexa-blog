@@ -30,22 +30,13 @@ class SiteController extends Controller
 		$category = new Category();
 		$categories = $category->all();
 
-		$dataProvider = new CArrayDataProvider($categories, array(
-			'id' => 'id',
-			'sort' => array(
-				'attributes' => array(
-					'id',
-					'name'
-				),
-			),
-			'pagination' => array(
-				'pageSize' => 10,
-			),
-		)
-		);
+
+		if ($categories->error)
+			$this->redirect('error', $categories->error);
+
 		if (Yii::app()->user->isGuest)
 			$this->redirect(array('login'));
-		$this->render('index', array('dataProvider' => $dataProvider));
+		$this->render('index', array('categories' => $categories));
 	}
 
 	/**

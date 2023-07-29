@@ -4,62 +4,91 @@ require '../ConexaBlog/protected/vendor/autoload.php';
 use GuzzleHttp\Client;
 
 /**
- * This is the model class for table "tbl_user".
- *
- * The followings are the available columns in table 'tbl_user':
- * @property integer $id
- * @property string $username
- * @property string $password
- * @property string $email
+ * Class _BaseModel
+ * @package ConexaBlog\protected\models
+ * @property Client $api
+ * @property string $entity
  */
+
 class _BaseModel
 {
     protected $api;
+    private $entity;
+    public $error = null;
 
     public function __construct(string $entity)
     {
+        $this->entity = $entity;
         $this->api = new Client([
             // Base URI is used with relative requests
             'base_uri' => $_ENV['BASE_URL_MY_DB'] . '/' . $entity . '/',
         ]);
     }
 
-    public function all()
+    public function all(array $params = [])
     {
-        $response = $this->api->request('GET', '');
-        return json_decode($response->getBody(), true);
+        $response = $this->api->request(
+            'GET',
+            '',
+            [
+                'query' => $params
+            ]
+        );
+        if ($response->getStatusCode() == 200) {
+            return json_decode($response->getBody(), true);
+        } else {
+            $this->error = 'Não foi possível obter os dados de ' . $this->entity;
+        }
     }
 
-    public function get($params = [])
+    public function get($id, array $params = [])
     {
-        $response = $this->api->request('GET','',  [
+        $response = $this->api->request('GET', "{$id}", [
             'query' => $params
         ]);
-        return json_decode($response->getBody(), true);
+        if ($response->getStatusCode() == 200) {
+            return json_decode($response->getBody(), true);
+        } else {
+
+            $this->error = 'Não foi possível obter os dados de ' . $this->entity;
+
+        }
     }
 
-    public function post($params = [])
+    public function post(array $params = [])
     {
-        $response = $this->api->request('POST','', [
+        $response = $this->api->request('POST', '', [
             'form_params' => $params
         ]);
-        return json_decode($response->getBody(), true);
+        if ($response->getStatusCode() == 201) {
+            return json_decode($response->getBody(), true);
+        } else {
+            $this->error = 'Não foi possível realizar operação';
+        }
     }
 
-    public function put($params = [])
+    public function put($id, array $params = [])
     {
-        $response = $this->api->request('PUT', '', [
+        $response = $this->api->request('PUT', "{$id}", [
             'form_params' => $params
         ]);
-        return json_decode($response->getBody(), true);
+        if ($response->getStatusCode() == 200) {
+            return json_decode($response->getBody(), true);
+        } else {
+            $this->error = 'Não foi possível realizar operação';
+        }
     }
 
-    public function delete($params = [])
+    public function delete($id, array $params = [])
     {
-        $response = $this->api->request('DELETE', '', [
+        $response = $this->api->request('DELETE', "{$id}", [
             'form_params' => $params
         ]);
-        return json_decode($response->getBody(), true);
+        if ($response->getStatusCode() == 200) {
+            return json_decode($response->getBody(), true);
+        } else {
+            $this->error = 'Não foi possível realizar operação';
+        }
     }
 
 }

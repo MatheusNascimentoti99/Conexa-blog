@@ -53,8 +53,8 @@ class User extends _BaseModel
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
+			'username' => 'Usuário',
+			'password' => 'Senha',
 			'email' => 'Email',
 			'name' => 'Name',
 			'photo' => 'Photo',

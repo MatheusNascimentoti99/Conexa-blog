@@ -25,7 +25,7 @@ class UserIdentity extends CUserIdentity
 			'password' => $this->password,
 		);
 
-		$response = $user->get($params);
+		$response = $user->all($params);
 
 		if (count($response) > 0) {
 			$this->_id = $response[0]['id'];

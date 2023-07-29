@@ -67,7 +67,7 @@ body
 {
 	color:#000000;
 	background-color:transparent;
-	font-size:12px;
+	font-size:16px;
 	font-weight:bold;
 	text-decoration:none;
 	padding:5px 8px;
@@ -76,6 +76,7 @@ body
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
 	color: #6399cd;
+	border: transparent;
 	background-color:#EFF4FA;
 	text-decoration:none;
 }
