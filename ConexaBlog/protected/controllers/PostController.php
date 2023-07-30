@@ -7,7 +7,7 @@ class PostController extends Controller
 		'_limit' => 5,
 		'_sort' => 'created_at',
 		'_order' => 'DESC',
-		'category_id' => null
+		'categoryId' => null
 	);
 
 	private $_model;
@@ -37,7 +37,7 @@ class PostController extends Controller
 	public function actionIndex()
 	{
 
-		$category_id = $_GET['category_id'] ?? null;
+		$categoryId = $_GET['categoryId'] ?? null;
 		$this->pagination['_page'] = $_GET['_page'] ?? 1;
 
 		$category = new Category();
@@ -46,7 +46,7 @@ class PostController extends Controller
 			$this->redirect('error', $categories->error);
 
 		$post = new Post();
-		$params = array_merge($this->pagination, ['category_id' => $category_id]);
+		$params = array_merge($this->pagination, ['categoryId' => $categoryId]);
 		$posts = $post->all($params);
 
 		if ($posts->error)
@@ -76,7 +76,7 @@ class PostController extends Controller
 			array(
 				'categories' => $categories,
 				'dataProvider' => $dataProvider,
-				'category_id' => $category_id,
+				'categoryId' => $categoryId,
 				'model' => $post,
 			)
 		);
@@ -84,17 +84,19 @@ class PostController extends Controller
 
 	public function actionView($id)
 	{
-		$this->loadModel();
 
-		$author = new User();
-		$author = $author->get($this->_model['user_id']);
 		$comments = new Comment();
-		$comments = $comments->all(['post_id' => $this->_model['id']]);
+
+		$comments->withExpand(['user']);
+		$comments = $comments->all(['postId' => $id]);
+
+		$post = new Post();
+		$post->withExpand(['user']);
+		$post = $post->get($id);
 		$this->render(
 			'view',
 			array(
-				'post' => $this->_model,
-				'author' => $author,
+				'post' => $post,
 				'comments' => $comments,
 			)
 		);
@@ -111,24 +113,6 @@ class PostController extends Controller
 			else
 				$this->render('error', $error);
 		}
-	}
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 */
-	public function loadModel()
-	{
-		if ($this->_model === null) {
-			if (isset($_GET['id'])) {
-				$post = new Post();
-				$this->_model = $post->get($_GET['id']);
-			}
-			if ($this->_model === null)
-				throw new CHttpException(404, 'A página solicitada não existe.');
-			unset($author['password']);
-		}
-		return $this->_model;
 	}
 
 

@@ -5,8 +5,8 @@
  *
  * The followings are the available columns in table 'tbl_user':
  * @property integer $id
- * @property string $user_id
- * @property string $category_id
+ * @property string $userId
+ * @property string $categoryId
  * @property string $content
  * @property string $title
  * @property string $image_url
@@ -26,8 +26,8 @@ class Comment extends _BaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, post_id, content', 'required'),
-			array('user_id, post_id', 'length', 'max' => 128),
+			array('userId, postId, content', 'required'),
+			array('userId, postId', 'length', 'max' => 128),
 		);
 	}
 
@@ -39,7 +39,7 @@ class Comment extends _BaseModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'author' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'author' => array(self::BELONGS_TO, 'User', 'userId'),
 		);
 	}
 
@@ -51,9 +51,9 @@ class Comment extends _BaseModel
 		return array(
 			'id' => 'ID',
 			'content' => 'Conteúdo',
-			'post_id' => 'Postagem',
+			'postId' => 'Postagem',
 			'created_at' => 'Criado em',
-			'user_id' => 'ID do Usuário',
+			'userId' => 'ID do Usuário',
 		);
 	}
 

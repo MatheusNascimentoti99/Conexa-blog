@@ -7,21 +7,23 @@
     <div class="content">
         <div class="card m-2">
             <div class="card-body">
-                <h5 class="card-title ">
-                    <strong>
-                        <?php echo CHtml::encode($post['title']); ?>
-                    </strong>
-                </h5>
+                <div class="card-title">
+                    <h5>
+                        <strong>
+                            <?php echo CHtml::encode($post['title']); ?>
+                        </strong>
+                    </h5>
+                    <caption class="card-text">
+                        <small class="text-muted">
+                            <?php echo 'Postado em ' . Yii::app()->dateFormatter->format('dd-MM-yyyy', strtotime($post['created_at'])); ?>
+                            <?php echo 'por ' . CHtml::encode($post['user']['name']); ?>
+                        </small>
+                    </caption>
+                </div>
                 <?php if (isset($post['image_url'])): ?>
-                    <img src="<?php echo CHtml::encode($post['image_url']) ?>" class="" style="max-height: 400px; max-width: 100%; object-fit: contain;" alt="...">
+                    <img src="<?php echo CHtml::encode($post['image_url']) ?>" class=""
+                        style="max-height: 400px; max-width: 100%; object-fit: contain;" alt="...">
                 <?php endif; ?>
-                <p class="card-text">
-                    <small class="text-muted">
-                        <?php echo 'Postado em ' . Yii::app()->dateFormatter->format('dd-MM-yyyy HH:mm', strtotime($post['created_at'])); ?>
-                        <?php echo 'por ' . CHtml::encode($author['name']); ?>
-                    </small>
-                </p>
-
                 <p class="card-text">
                 <div>
                     <?php
@@ -33,16 +35,18 @@
                 </p>
             </div>
         </div>
-        <div id="comments">
+        <div id="comments" class="mt-5">
             <?php if (count($comments) >= 1): ?>
                 <h3>
-                    <?php echo count($comments) > 1 ? count($comments) . ' comments' : 'One comment'; ?>
+                    <?php echo count($comments) > 1 ? count($comments) . ' comentários ' : ''; ?>
                 </h3>
 
-                <?php $this->renderPartial('_comments', array(
-                    'post' => $post,
-                    'comments' => $comments,
-                )
+                <?php $this->renderPartial(
+                    '_comments',
+                    array(
+                        'post' => $post,
+                        'comments' => $comments,
+                    )
                 ); ?>
             <?php endif; ?>
 

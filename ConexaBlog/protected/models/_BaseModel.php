@@ -16,6 +16,9 @@ class _BaseModel
     private $entity;
     public $error = null;
 
+    private $_embedded = [];
+    private $_expand = [];
+
     public function __construct(string $entity)
     {
         $this->entity = $entity;
@@ -25,9 +28,23 @@ class _BaseModel
         ]);
     }
 
+    public function withEmbedded(array $relations)
+    {
+        $this->_embedded = $relations;
+        
+    }
+
+    public function withExpand(array $relations)
+    {
+        $this->_expand = $relations;
+    }
+
     public function all(array $params = [])
     {
-
+        $params = array_merge($params, [
+            '_expand' => implode(',', $this->_expand),
+            '_embed' => implode(',', $this->_embedded)
+        ]);
         $response = $this->api->request(
             'GET',
             '',
@@ -44,6 +61,10 @@ class _BaseModel
 
     public function get($id, array $params = [])
     {
+        $params = array_merge($params, [
+            '_expand' => implode(',', $this->_expand),
+            '_embed' => implode(',', $this->_embedded)
+        ]);
         $response = $this->api->request('GET', "{$id}", [
             'query' => $params
         ]);
