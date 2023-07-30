@@ -13,7 +13,7 @@
                     </strong>
                 </h5>
                 <?php if (isset($post['image_url'])): ?>
-                    <img src="<?php echo CHtml::encode($post['image_url']) ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo CHtml::encode($post['image_url']) ?>" class="" style="max-height: 400px; max-width: 100%; object-fit: contain;" alt="...">
                 <?php endif; ?>
                 <p class="card-text">
                     <small class="text-muted">

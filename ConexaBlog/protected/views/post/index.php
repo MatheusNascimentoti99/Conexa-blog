@@ -26,6 +26,9 @@ $this->pageTitle = Yii::app()->name;
 
 
 	<section>
+		<div class="col-md-12">
+			<h2 class="mt-4 mb-4">Últimas publicações</h2>
+		</div>
 		<?php $this->widget(
 			'zii.widgets.CListView',
 			array(
@@ -37,7 +40,7 @@ $this->pageTitle = Yii::app()->name;
 				'emptyCssClass' => 'h3 rounded-pill text-warning'
 			)
 		); ?>
-		<nav aria-label="Page navigation example">
+		<nav class="mt-4" aria-label="Page navigation example">
 			<ul class="pagination justify-content-center d-flex justify-content-evenly">
 				<li class="page-item">
 					<?php echo CHtml::link('Página anterior', array('index', '_page' => $_GET['_page'] - 1)); ?>
@@ -47,3 +50,4 @@ $this->pageTitle = Yii::app()->name;
 				</li>
 			</ul>
 		</nav>
+	</section>
