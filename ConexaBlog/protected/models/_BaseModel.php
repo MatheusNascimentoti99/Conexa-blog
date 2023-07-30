@@ -27,7 +27,7 @@ class _BaseModel
 
     public function all(array $params = [])
     {
-        
+
         $response = $this->api->request(
             'GET',
             '',
@@ -35,7 +35,6 @@ class _BaseModel
                 'query' => $params
             ]
         );
-
         if ($response->getStatusCode() == 200) {
             return json_decode($response->getBody(), true);
         } else {

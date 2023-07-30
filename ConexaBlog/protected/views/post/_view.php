@@ -7,8 +7,10 @@
 	<div class="content">
 		<div class="card m-2">
 			<div class="card-body">
-				<h5 class="card-title">
+				<h5 class="card-title ">
+					<strong>
 					<?php echo CHtml::encode($data['title']); ?>
+					</strong>
 				</h5>
 				<?php if (isset($data['image_url'])): ?>
 					<img src="<?php echo CHtml::encode($data['image_url']) ?>" class="card-img-top" alt="...">
@@ -29,7 +31,7 @@
 					?>
 				</div>
 				</p>
-				<a href="#" class="btn btn-primary">Ver mais</a>
+				<?php echo CHtml::link('Ver mais', array('view', 'id' => $data['id']), ['class' => 'btn btn-primary']); ?>
 			</div>
 		</div>
 	</div>

@@ -32,6 +32,18 @@ $this->pageTitle = Yii::app()->name;
 				'dataProvider' => $dataProvider,
 				'itemView' => '_view',
 				'template' => "{items}\n{pager}",
+				'enablePagination' => true,
+				'emptyText' => 'Nenhuma publicação encontrada.',
+				'emptyCssClass' => 'h3 rounded-pill text-warning'
 			)
 		); ?>
-	</section>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center d-flex justify-content-evenly">
+				<li class="page-item">
+					<?php echo CHtml::link('Página anterior', array('index', '_page' => $_GET['_page'] - 1)); ?>
+				</li>
+				<li class="page-item">
+					<?php echo CHtml::link('Próxima página', array('index', '_page' => $_GET['_page'] + 1)); ?>
+				</li>
+			</ul>
+		</nav>
