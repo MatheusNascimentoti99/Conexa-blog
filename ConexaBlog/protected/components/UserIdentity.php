@@ -24,7 +24,7 @@ class UserIdentity extends CUserIdentity
 			'username' => $this->username,
 			'password' => $this->password,
 		);
-
+		
 		$response = $user->all($params);
 
 		if (count($response) > 0) {

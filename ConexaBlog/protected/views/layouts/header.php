@@ -18,14 +18,14 @@
                 'zii.widgets.CMenu',
                 array(
                     'items' => array(
-                        array('label' => 'Início', 'url' => array('/site/index'), 'visible' => !Yii::app()->user->isGuest),
+                        array('label' => 'Início', 'url' => array('/post/index'), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => 'Sobre', 'url' => array('/site/page', 'view' => 'about')),
                         array('label' => 'Contato', 'url' => array('/site/contact')),
 
                     ),
-                    'itemCssClass' => 'btn',
+                    'itemCssClass' => 'btn ',
                     'encodeLabel' => false,
-                    'activeCssClass' => 'active btn-white',
+                    'activeCssClass' => 'shadow-lg text-success border-bottom',
                     'htmlOptions' => array('class' => 'navbar-nav me-auto'),
                     'id' => "mainmenu"
                 )
@@ -39,7 +39,11 @@
                 <div class="d-flex flex-row align-items-center justify-center">
                     <img src="<?php echo Yii::app()->user->photo ?>" class="rounded-circle" height="40" alt=""
                         loading="lazy" />
-                    <?php echo Yii::app()->user->title ?>
+                    <!-- Space -->
+                    <span class="me-2">
+
+                        <?php echo Yii::app()->user->title ?>
+                    </span>
                     <?php echo CHtml::link('(Sair)', array('/site/logout'), []); ?>
                 </div>
 

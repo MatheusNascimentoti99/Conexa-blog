@@ -21,23 +21,7 @@ class SiteController extends Controller
 		);
 	}
 
-	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
-	 */
-	public function actionIndex()
-	{
-		$category = new Category();
-		$categories = $category->all();
 
-
-		if ($categories->error)
-			$this->redirect('error', $categories->error);
-
-		if (Yii::app()->user->isGuest)
-			$this->redirect(array('login'));
-		$this->render('index', array('categories' => $categories));
-	}
 
 	/**
 	 * This is the action to handle external exceptions.

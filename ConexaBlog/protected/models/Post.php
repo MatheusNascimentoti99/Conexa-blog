@@ -13,7 +13,10 @@
  */
 class Post extends _BaseModel
 {
-
+	public function __construct()
+	{
+		parent::__construct('posts');
+	}
 
 	/**
 	 * @return array validation rules for model attributes.

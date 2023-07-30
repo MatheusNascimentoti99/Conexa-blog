@@ -71,12 +71,12 @@ body
 	font-weight:bold;
 	text-decoration:none;
 	padding:5px 8px;
+	margin: 16px;
 }
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
 	color: #6399cd;
-	border: transparent;
 	background-color:#EFF4FA;
 	text-decoration:none;
 }
