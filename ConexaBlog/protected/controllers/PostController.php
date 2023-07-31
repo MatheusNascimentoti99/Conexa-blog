@@ -88,6 +88,7 @@ class PostController extends Controller
 				'dataProvider' => $dataProvider,
 				'categoryId' => $categoryId,
 				'model' => $post,
+				'page' => $this->pagination['_page'],
 			)
 		);
 	}

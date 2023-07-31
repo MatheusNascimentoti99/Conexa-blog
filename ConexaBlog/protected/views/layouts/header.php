@@ -19,7 +19,6 @@
                 array(
                     'items' => array(
                         array('label' => 'Início', 'url' => array('/post/index'), 'visible' => !Yii::app()->user->isGuest),
-                        array('label' => 'Sobre', 'url' => array('/site/page', 'view' => 'about')),
                         array('label' => 'Contato', 'url' => array('/site/contact')),
                         array('label' => 'Nova publicação', 'url' => array('post/create'), 'visible' => !Yii::app()->user->isGuest),
 

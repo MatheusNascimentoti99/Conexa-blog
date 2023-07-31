@@ -40,13 +40,13 @@ $this->pageTitle = Yii::app()->name;
 				'emptyCssClass' => 'h3 rounded-pill text-warning'
 			)
 		); ?>
-		<nav class="mt-4" aria-label="Page navigation example">
+		<nav class="mt-4">
 			<ul class="pagination justify-content-center d-flex justify-content-evenly">
 				<li class="page-item">
-					<?php echo CHtml::link('Página anterior', array('index', '_page' => $_GET['_page'] - 1)); ?>
+					<?php echo CHtml::link('Página anterior', array('index', '_page' => $page - 1)); ?>
 				</li>
 				<li class="page-item">
-					<?php echo CHtml::link('Próxima página', array('index', '_page' => $_GET['_page'] + 1)); ?>
+					<?php echo CHtml::link('Próxima página', array('index', '_page' => $page + 1)); ?>
 				</li>
 			</ul>
 		</nav>
