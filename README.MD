@@ -4,7 +4,8 @@
 * `git clone https://github.com/MatheusNascimentoti99/Conexa-blog.git ` 
 * `cd Conexa-blog`
 * `cp .env.example .env`    
-* `docker compose up`
+* `docker compose up -d`
+* `docker compose exec -it php  bash -c "cd ConexaBlog/protected && composer install"`
 
 ### Acesso ###
 * `http://localhost/ConexaBlog/`
