@@ -21,7 +21,7 @@
                 <div class="row">
                     <?php echo $form->labelEx($model, 'content'); ?>
                     <?php echo $form->textArea($model, 'content', array('rows' => 6, 'cols' => 50, 'class' => 'mb-4 mt-4 p-4')); ?>
-                    <?php echo $form->error($model, 'content'); ?>
+                    <?php echo $form->error($model, 'content', array('class' =>'text-danger')); ?>
                 </div>
 
                 <div class="row">
