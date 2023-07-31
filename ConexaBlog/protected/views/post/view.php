@@ -49,8 +49,13 @@
                     )
                 ); ?>
             <?php endif; ?>
+        </div>
 
-
+        <div class="mt-4">
+            <?php $this->renderPartial('/comment/_form', array(
+                'model' => $comment,
+            )
+            ); ?>
         </div>
     </div>
 </div>

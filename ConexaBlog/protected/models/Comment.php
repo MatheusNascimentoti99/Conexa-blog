@@ -13,8 +13,11 @@
  */
 class Comment extends _BaseModel
 {
+	public $content;
+
 	public function __construct()
 	{
+		$this->content = '';
 		parent::__construct('comments');
 	}
 
@@ -26,7 +29,7 @@ class Comment extends _BaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userId, postId, content', 'required'),
+			array('userId, postId, content', 'required', 'message' => 'O campo {attribute} é obrigatório.'),
 			array('userId, postId', 'length', 'max' => 128),
 		);
 	}

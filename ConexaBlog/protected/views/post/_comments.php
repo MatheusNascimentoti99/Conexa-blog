@@ -3,7 +3,7 @@
 		<div class="d-flex flex-start align-items-center">
 			<?php if (isset($comment['user']['photo'])): ?>
 				<img class="rounded-circle shadow-1-strong" src="<?php echo $comment['user']['photo'] ?>" alt="avatar"
-					width="65" height="65" />
+					width="65" />
 			<?php endif ?>
 			<div class="flex-grow-1 flex-shrink-1">
 				<div>

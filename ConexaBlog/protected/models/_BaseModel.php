@@ -10,7 +10,7 @@ use GuzzleHttp\Client;
  * @property string $entity
  */
 
-class _BaseModel
+class _BaseModel extends CFormModel
 {
     protected $api;
     private $entity;

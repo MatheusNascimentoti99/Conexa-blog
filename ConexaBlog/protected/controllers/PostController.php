@@ -93,11 +93,15 @@ class PostController extends Controller
 		$post = new Post();
 		$post->withExpand(['user']);
 		$post = $post->get($id);
+
+		// To create a new comment
+		$comment = $this->newComment($post);
 		$this->render(
 			'view',
 			array(
 				'post' => $post,
 				'comments' => $comments,
+				'comment' => (object) $comment,
 			)
 		);
 	}
@@ -115,5 +119,29 @@ class PostController extends Controller
 		}
 	}
 
+	/**
+	 * Creates a new comment.
+	 * This method attempts to create a new comment based on the user input.
+	 * If the comment is successfully created, the browser will be redirected
+	 * to show the created comment.
+	 * @param Post the post that the new comment belongs to
+	 * @return Comment the comment instance
+	 */
+	protected function newComment($post)
+	{
+		$comment = new Comment;
+		if (isset($_POST['ajax']) && $_POST['ajax'] === 'comment-form') {
+			echo CActiveForm::validate($comment);
+
+			if (!$this->hasErrors() && isset($_POST['Comment'])) {
+				$comment->post([
+					'content' => $_POST['Comment'],
+					'postId' => $post['id'],
+					'userId' => Yii::app()->user->id,
+				]);
+			}
+		}
+		return $comment;
+	}
 
 }
