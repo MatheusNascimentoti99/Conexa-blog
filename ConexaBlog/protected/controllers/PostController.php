@@ -11,23 +11,14 @@ class PostController extends Controller
 	);
 
 	private $_model;
-	/**
-	 * Declares class-based actions.
-	 */
-	public function actions()
+	
+	public function actionCreate()
 	{
-		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha' => array(
-				'class' => 'CCaptchaAction',
-				'backColor' => 0xFFFFFF,
-			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page' => array(
-				'class' => 'CViewAction',
-			),
-		);
+		$model=new Post;
+
+		$this->render('create',array(
+			'model'=>$model,
+		));
 	}
 
 	/**

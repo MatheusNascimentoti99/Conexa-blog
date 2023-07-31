@@ -22,12 +22,6 @@
 
 	<div>
 		<?php require_once 'header.php'; ?>
-		<?php if (isset($this->breadcrumbs)): ?>
-			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-				'links' => $this->breadcrumbs,
-			)
-			); ?><!-- breadcrumbs -->
-		<?php endif ?>
 		<div style="padding: 100px 0px;">
 			<?php echo $content; ?>
 		</div>
