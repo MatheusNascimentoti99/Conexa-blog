@@ -7,13 +7,6 @@ body
 	background: #EFEFEF;
 }
 
-#page
-{
-	margin-top: 5px;
-	margin-bottom: 5px;
-	background: white;
-	border: 1px solid #C9E0ED;
-}
 
 #header
 {
@@ -35,7 +28,6 @@ body
 #footer
 {
 	padding: 10px;
-	margin: 10px 20px;
 	font-size: 0.8em;
 	text-align: center;
 	border-top: 1px solid #C9E0ED;
@@ -49,7 +41,7 @@ body
 
 #mainmenu
 {
-	background:white url(bg.gif) repeat-x left top;
+	background:white;
 }
 
 #mainmenu ul
@@ -65,12 +57,13 @@ body
 
 #mainmenu ul li a
 {
-	color:#ffffff;
+	color:#000000;
 	background-color:transparent;
-	font-size:12px;
+	font-size:16px;
 	font-weight:bold;
 	text-decoration:none;
 	padding:5px 8px;
+	margin: 16px;
 }
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a

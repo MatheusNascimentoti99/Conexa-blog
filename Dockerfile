@@ -14,6 +14,8 @@ RUN chmod +x yii-1.1.22/framework/yiic
 # set yiic as global command
 RUN ln -s /usr/bin/yii/yii-1.1.22/framework/yiic /usr/local/bin/yiic
  
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
 RUN echo $PATH
 
 WORKDIR /var/www/html

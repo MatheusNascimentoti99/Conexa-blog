@@ -1,0 +1,34 @@
+#category ul {
+	padding: 6px 20px 5px 20px;
+	margin: 0px;
+}
+
+#category ul li {
+	display: inline;
+}
+
+#category ul li a {
+	color: #000000;
+	border: transparent;
+	border-radius: 5px;
+	background-color: #ffdabc;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 5px 8px;
+}
+
+#category ul li a:hover,
+#category ul li.active a {
+	color: #6399cd;
+	background-color: #EFF4FA;
+	text-decoration: none;
+}
+
+#postMarkdown {
+	overflow: hidden;
+	width: 100%;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
