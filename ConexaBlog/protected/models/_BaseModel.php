@@ -82,6 +82,7 @@ class _BaseModel extends CFormModel
         $response = $this->api->request('POST', '', [
             'form_params' => $params
         ]);
+        Yii::log($response->getStatusCode(), 'info', 'application');
         if ($response->getStatusCode() == 201) {
             return json_decode($response->getBody(), true);
         } else {

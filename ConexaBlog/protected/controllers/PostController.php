@@ -11,14 +11,33 @@ class PostController extends Controller
 	);
 
 	private $_model;
-	
+
 	public function actionCreate()
 	{
-		$model=new Post;
+		$model = new Post;
+		$category = new Category();
+		$categories = $category->all();
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		if (isset($_POST['Post'])) {
+			$model->validate();
+			$response = $model->post([
+				'title' => $_POST['Post']['title'],
+				'content' => $_POST['Post']['content'],
+				'categoryId' => $_POST['Post']['categoryId'],
+				'image_url' => $_POST['Post']['image_url'],
+				'userId' => Yii::app()->user->id,
+
+			]);
+			$this->redirect(array('index'));
+		}
+
+		$this->render(
+			'create',
+			array(
+				'model' => $model,
+				'categories' => $categories
+			)
+		);
 	}
 
 	/**

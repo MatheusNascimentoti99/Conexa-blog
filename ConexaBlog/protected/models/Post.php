@@ -13,6 +13,13 @@
  */
 class Post extends _BaseModel
 {
+	public $content;
+	public $title;
+	public $categoryId;
+	public $image_url;
+
+	public $userId;
+
 	public function __construct()
 	{
 		parent::__construct('posts');
@@ -26,7 +33,7 @@ class Post extends _BaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userId, categoryId, content, title', 'required'),
+			array('userId, categoryId, content, title', 'required', 'message' => 'O campo {attribute} é obrigatório.'),
 			array('userId, categoryId, content', 'length', 'max' => 128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -57,7 +64,7 @@ class Post extends _BaseModel
 			'content' => 'Conteúdo',
 			'categoryId' => 'Categoria',
 			'userId' => 'Autor',
-			'image_url' => 'Imagem',
+			'image_url' => 'Link de imagem',
 		);
 	}
 

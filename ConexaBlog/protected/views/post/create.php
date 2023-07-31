@@ -1,8 +1,14 @@
 <?php
-$this->breadcrumbs=array(
-	'Nova publicação',
+$this->breadcrumbs = array(
+    'Nova publicação',
 );
 ?>
 
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial(
+    '_form',
+    array(
+        'model' => $model,
+        'categories' => $categories,
+    )
+); ?>
